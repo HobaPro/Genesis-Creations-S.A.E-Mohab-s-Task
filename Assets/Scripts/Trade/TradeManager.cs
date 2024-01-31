@@ -13,34 +13,26 @@ public class TradeManager : MonoBehaviour
         else instance = this;
     }
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
-
     public void BuyItem(int itemId)
     {
         Item item = GameManager.instance.market.GetComponent<Inventory>().GetItem(itemId);
 
         if (!item)
         {
-            UIManager.instance.ErrorMessage("Item isn't exist in the market inventory");
+            UIManager.instance.AlertMessage("Item isn't exist in the market inventory", true);
 
             return;
         }
 
         if (GameManager.instance.player.GetComponent<Cash>().Amount < item.price)
         {
-            UIManager.instance.ErrorMessage("You have not enough chash to buy this item.");
+            UIManager.instance.AlertMessage("You have not enough chash to buy this item.", true);
 
             return;
         }
 
         GameManager.instance.player.GetComponent<Cash>().Amount -= item.price;
-
         GameManager.instance.market.GetComponent<Inventory>().RemoveItem(item);
-
         GameManager.instance.player.GetComponent<Inventory>().AddItem(item);
     }
 
@@ -56,9 +48,7 @@ public class TradeManager : MonoBehaviour
         }
 
         GameManager.instance.player.GetComponent<Cash>().Amount += item.price;
-
         GameManager.instance.player.GetComponent<Inventory>().RemoveItem(item);
-
         GameManager.instance.market.GetComponent<Inventory>().AddItem(item);
     }
 }

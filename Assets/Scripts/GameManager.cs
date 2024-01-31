@@ -7,11 +7,10 @@ public class GameManager : MonoBehaviour
     // Define a Singleton Property
     public static GameManager instance { get; private set; }
 
+    // Referances to the main game objects in game.
     public GameObject player {  get; private set; }
     public GameObject market { get; private set; }
     public GameObject atm { get; private set; }
-
-    private List<Item> _worldItems;
 
     private int _itemIds { get; set; }
 
@@ -28,12 +27,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Loader.Load(Loader.Scene.GAME);
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-
     }
 
     public void OnGameSceneLoaded()
@@ -60,6 +53,7 @@ public class GameManager : MonoBehaviour
         UIManager.instance.CloseAllWindows();
     }
 
+    // This method generates new unique id for each item awakened in the world.
     public int GenerateItemId()
     {
         _itemIds++;

@@ -21,10 +21,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button _sleepingBtn;
     [SerializeField] private Button _closeWindowsBtn;
 
+    [SerializeField] private Button _depositBtn;
+    [SerializeField] private Button _withdrawBtn;
+
     // GUI Texts
     [SerializeField] private Text _playerCashTxt;
     [SerializeField] private Text _playerBankTxt;
-    [SerializeField] private Text _errorMessage;
+    [SerializeField] private Text _alertMessage;
+
+    // GUI Input Fields
+    [SerializeField] private InputField _atmAmountInput;
 
     private void Awake()
     {
@@ -39,6 +45,9 @@ public class UIManager : MonoBehaviour
         _atmBtn.onClick.AddListener(ShowATMWinddow);
         _sleepingBtn.onClick.AddListener(ShowSleepingTimerWindow);
         _closeWindowsBtn.onClick.AddListener(CloseAllWindows);
+
+        _depositBtn.onClick.AddListener(HandleDeposit);
+        _withdrawBtn.onClick.AddListener(HandleWithdraw);
     }
 
 
@@ -76,7 +85,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowATMWinddow()
     {
-        ActivateSpecificWindow(_shopkeeperInventoryWindow);
+        ActivateSpecificWindow(_atmWindow);
     }
 
     public void ShowSleepingTimerWindow()
@@ -91,22 +100,8 @@ public class UIManager : MonoBehaviour
         _playerInventoryWindow.SetActive(false);
         _atmWindow.SetActive(false);
         _sleepingTimerWindow.SetActive(false);
-    }
 
-    public void ErrorMessage(string message)
-    {
-        _errorMessage.text = message;
-
-        _errorMessage.gameObject.SetActive(true);
-
-        StartCoroutine(HideErrorMessage());
-    }
-
-    private IEnumerator HideErrorMessage()
-    {
-        yield return new WaitForSeconds(2.0f);
-
-        _errorMessage.gameObject.SetActive(false);
+        _alertMessage.gameObject.SetActive(false);
     }
 
     private void ActivateSpecificWindow(GameObject window)
@@ -121,7 +116,39 @@ public class UIManager : MonoBehaviour
         window.SetActive(true);
     }
 
-    // Event Listeners
+    private void HandleDeposit()
+    {
+        float amount;
+        if (_atmAmountInput.text == "") amount = 0;
+        else amount = float.Parse(_atmAmountInput.text);
+
+        GameManager.instance.atm.GetComponent<ATM>().Deposit(GameManager.instance.player.GetComponent<Bank>(), amount);
+    }
+
+    private void HandleWithdraw()
+    {
+        float amount;
+        if (_atmAmountInput.text == "") amount = 0;
+        else amount = float.Parse(_atmAmountInput.text);
+
+        GameManager.instance.atm.GetComponent<ATM>().Withdraw(GameManager.instance.player.GetComponent<Bank>(), amount);
+    }
+
+    public void AlertMessage(string message, bool isError = false)
+    {
+        if (isError) _alertMessage.color = Color.red;
+        else _alertMessage.color = Color.green;
+
+        _alertMessage.text = message;
+
+        _alertMessage.gameObject.SetActive(true);
+    }
+
+    public void EmptyAmountInput()
+    {
+        _atmAmountInput.text = "";
+    }
+
     private void OnPlayerChashChanged(float amount)
     {
         _playerCashTxt.text = $"{amount}$";

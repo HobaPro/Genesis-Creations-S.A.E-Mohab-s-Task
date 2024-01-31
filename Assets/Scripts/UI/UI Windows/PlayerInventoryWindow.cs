@@ -12,26 +12,19 @@ public class PlayerInventoryWindow : MonoBehaviour
     {
         UpdateContent();
 
+        // Add "UpdateContent" method as event listener, event listener will executed when "OnPlayerInventoryChanged" triggered to update player inventory UI content.
+        // This event will triggered when player inventory changed.
         PlayerInventory.OnPlayerInventoryChanged += UpdateContent;
     }
 
     private void OnDisable()
     {
+        // Remove "UpdateContent" event listener, until it is not executed when "OnPlayerInventoryChanged" triggered.
         PlayerInventory.OnPlayerInventoryChanged -= UpdateContent;
     }
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        
-    }
-
+    // This method will executed when "OnPlayerInventoryChanged" triggered to update player inventory UI content.
+    // This method will executed when player inventory changed.
     public void UpdateContent()
     {
         foreach (Transform child in _content)
