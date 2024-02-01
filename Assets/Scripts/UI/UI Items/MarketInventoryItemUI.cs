@@ -35,6 +35,6 @@ public class MarketInventoryItemUI : MonoBehaviour
 
     public void BuyItem()
     {
-        TradeManager.instance.BuyItem(ItemId);
+        GameManager.instance.ActiveMarket.BuyItem(ItemId);
     }
 }

@@ -9,14 +9,14 @@ public class UIManager : MonoBehaviour
 
     // GUI Windows
     [SerializeField] private GameObject _mainWindow;
-    [SerializeField] private GameObject _shopkeeperInventoryWindow;
-    [SerializeField] private GameObject _playerInventoryWindow;
+    [SerializeField] private GameObject _market1Window;
+    [SerializeField] private GameObject _market2Window;
     [SerializeField] private GameObject _atmWindow;
     [SerializeField] private GameObject _sleepingTimerWindow;
 
     // GUI Buttons
-    [SerializeField] private Button _marketBtn;
-    [SerializeField] private Button _playerInventoryBtn;
+    [SerializeField] private Button _market1Btn;
+    [SerializeField] private Button _market2Btn;
     [SerializeField] private Button _atmBtn;
     [SerializeField] private Button _sleepingBtn;
     [SerializeField] private Button _closeWindowsBtn;
@@ -40,8 +40,8 @@ public class UIManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
 
-        _marketBtn.onClick.AddListener(ShowShopkeeperInventoryWindow);
-        _playerInventoryBtn.onClick.AddListener(ShowPlayerInventoryWindow);
+        _market1Btn.onClick.AddListener(ShowMarket1Window);
+        _market2Btn.onClick.AddListener(ShowMarket2Window);
         _atmBtn.onClick.AddListener(ShowATMWinddow);
         _sleepingBtn.onClick.AddListener(ShowSleepingTimerWindow);
         _closeWindowsBtn.onClick.AddListener(CloseAllWindows);
@@ -73,14 +73,18 @@ public class UIManager : MonoBehaviour
         _mainWindow.SetActive(true);
     }
 
-    public void ShowPlayerInventoryWindow()
+    public void ShowMarket1Window()
     {
-        ActivateSpecificWindow(_playerInventoryWindow);
+        GameManager.instance.ActiveMarket = GameManager.instance.market1.GetComponent<Market>();
+
+        ActivateSpecificWindow(_market1Window);
     }
 
-    public void ShowShopkeeperInventoryWindow()
+    public void ShowMarket2Window()
     {
-        ActivateSpecificWindow(_shopkeeperInventoryWindow);
+        GameManager.instance.ActiveMarket = GameManager.instance.market2.GetComponent<Market>();
+
+        ActivateSpecificWindow(_market2Window);
     }
 
     public void ShowATMWinddow()
@@ -96,8 +100,8 @@ public class UIManager : MonoBehaviour
     public void CloseAllWindows()
     {
         // Disable all windows
-        _shopkeeperInventoryWindow.SetActive(false);
-        _playerInventoryWindow.SetActive(false);
+        _market1Window.SetActive(false);
+        _market2Window.SetActive(false);
         _atmWindow.SetActive(false);
         _sleepingTimerWindow.SetActive(false);
 
@@ -107,8 +111,8 @@ public class UIManager : MonoBehaviour
     private void ActivateSpecificWindow(GameObject window)
     {
         // Disable all windows
-        _shopkeeperInventoryWindow.SetActive(false);
-        _playerInventoryWindow.SetActive(false);
+        _market1Window.SetActive(false);
+        _market2Window.SetActive(false);
         _atmWindow.SetActive(false);
         _sleepingTimerWindow.SetActive(false);
 
@@ -122,7 +126,7 @@ public class UIManager : MonoBehaviour
         if (_atmAmountInput.text == "") amount = 0;
         else amount = float.Parse(_atmAmountInput.text);
 
-        GameManager.instance.atm.GetComponent<ATM>().Deposit(GameManager.instance.player.GetComponent<Bank>(), amount);
+        GameManager.instance.atm.GetComponent<ATM>().Deposit(GameManager.instance.player, amount);
     }
 
     private void HandleWithdraw()
@@ -131,7 +135,7 @@ public class UIManager : MonoBehaviour
         if (_atmAmountInput.text == "") amount = 0;
         else amount = float.Parse(_atmAmountInput.text);
 
-        GameManager.instance.atm.GetComponent<ATM>().Withdraw(GameManager.instance.player.GetComponent<Bank>(), amount);
+        GameManager.instance.atm.GetComponent<ATM>().Withdraw(GameManager.instance.player, amount);
     }
 
     public void AlertMessage(string message, bool isError = false)

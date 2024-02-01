@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,8 +10,11 @@ public class GameManager : MonoBehaviour
 
     // Referances to the main game objects in game.
     public GameObject player {  get; private set; }
-    public GameObject market { get; private set; }
+    public GameObject market1 { get; private set; }
+    public GameObject market2 { get; private set; }
     public GameObject atm { get; private set; }
+
+    public Market ActiveMarket { get; set; }
 
     private int _itemIds { get; set; }
 
@@ -32,13 +36,14 @@ public class GameManager : MonoBehaviour
     public void OnGameSceneLoaded()
     {
         player = GameObject.Find("Player");
-        market = GameObject.Find("Market");
+        market1 = GameObject.Find("Market 1");
+        market2 = GameObject.Find("Market 2");
         atm = GameObject.Find("ATM");
 
-        foreach (Item item in FindObjectsOfType<Item>())
+        /*foreach (Item item in FindObjectsOfType<Item>())
         {
-            market.GetComponent<MarketInventory>().AddItem(item.GetComponent<Item>());
-        }
+            market1.GetComponent<MarketInventory>().AddItem(item.GetComponent<Item>());
+        }*/
 
         UIManager.instance.InitializeGameGUI();
     }
@@ -50,6 +55,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerWake_UpTime()
     {
+        player.GetComponent<Bank>().Amount += player.GetComponent<Bank>().Amount * 0.1f;
         UIManager.instance.CloseAllWindows();
     }
 

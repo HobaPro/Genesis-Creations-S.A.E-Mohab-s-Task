@@ -2,20 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TradeManager : MonoBehaviour
+public class Market : MonoBehaviour
 {
-    public static TradeManager instance { get; private set; }
-
-    private void Awake()
-    {
-        // Intialize Singleton
-        if (instance != null && instance != this) Destroy(gameObject);
-        else instance = this;
-    }
-
     public void BuyItem(int itemId)
     {
-        Item item = GameManager.instance.market.GetComponent<Inventory>().GetItem(itemId);
+        Item item = GetComponent<Inventory>().GetItem(itemId);
 
         if (!item)
         {
@@ -24,15 +15,16 @@ public class TradeManager : MonoBehaviour
             return;
         }
 
-        if (GameManager.instance.player.GetComponent<Cash>().Amount < item.price)
+        if (GameManager.instance.player.GetComponent<Cash>().Amount < item.Price)
         {
             UIManager.instance.AlertMessage("You have not enough chash to buy this item.", true);
 
             return;
         }
 
-        GameManager.instance.player.GetComponent<Cash>().Amount -= item.price;
-        GameManager.instance.market.GetComponent<Inventory>().RemoveItem(item);
+        GameManager.instance.player.GetComponent<Cash>().Amount -= item.Price;
+
+        GetComponent<Inventory>().RemoveItem(item);
         GameManager.instance.player.GetComponent<Inventory>().AddItem(item);
     }
 
@@ -47,8 +39,8 @@ public class TradeManager : MonoBehaviour
             return;
         }
 
-        GameManager.instance.player.GetComponent<Cash>().Amount += item.price;
+        GameManager.instance.player.GetComponent<Cash>().Amount += item.Price;
         GameManager.instance.player.GetComponent<Inventory>().RemoveItem(item);
-        GameManager.instance.market.GetComponent<Inventory>().AddItem(item);
+        GetComponent<Inventory>().AddItem(item);
     }
 }

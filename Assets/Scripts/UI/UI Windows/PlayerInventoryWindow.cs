@@ -37,8 +37,8 @@ public class PlayerInventoryWindow : MonoBehaviour
             PlayerInventoryItemUI itemUI = Instantiate(_itemPrefab, _content).GetComponent<PlayerInventoryItemUI>();
 
             itemUI.ItemId = item.id;
-            itemUI.SetItemName(item.name);
-            itemUI.SetItemPrice(item.price);
+            itemUI.SetItemName(item.Name);
+            itemUI.SetItemPrice(item.Price);
         }
     }
 }

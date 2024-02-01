@@ -32,13 +32,13 @@ public class MarketInventoryWindow : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (Item item in GameManager.instance.market.GetComponent<Inventory>().inventory)
+        foreach (Item item in GameManager.instance.ActiveMarket.GetComponent<Inventory>().inventory)
         {
             MarketInventoryItemUI itemUI = Instantiate(_itemPrefab, _content).GetComponent<MarketInventoryItemUI>();
 
             itemUI.ItemId = item.id;
-            itemUI.SetItemName(item.name);
-            itemUI.SetItemPrice(item.price);
+            itemUI.SetItemName(item.Name);
+            itemUI.SetItemPrice(item.Price);
         }
     }
 }

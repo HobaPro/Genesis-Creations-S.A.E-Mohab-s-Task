@@ -19,12 +19,6 @@ public class SleepingTimer : MonoBehaviour
         timeEnded = false;
     }
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     private void Update()
     {
@@ -45,7 +39,7 @@ public class SleepingTimer : MonoBehaviour
 
     private void UI_SetSeconds()
     {
-        if (seconds < 10) secondsTxt.text = "0" + Mathf.Round(seconds).ToString();
-        else secondsTxt.text = Mathf.Round(seconds).ToString();
+        if (Mathf.Round(seconds) < 10) secondsTxt.text = $"0{Mathf.Round(seconds)}";
+        else secondsTxt.text = $"{Mathf.Round(seconds)}";
     }
 }

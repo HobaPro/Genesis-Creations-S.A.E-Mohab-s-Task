@@ -35,6 +35,6 @@ public class PlayerInventoryItemUI : MonoBehaviour
 
     public void SellItem()
     {
-        TradeManager.instance.SellItem(ItemId);
+        GameManager.instance.ActiveMarket.SellItem(ItemId);
     }
 }
