@@ -40,11 +40,6 @@ public class GameManager : MonoBehaviour
         market2 = GameObject.Find("Market 2");
         atm = GameObject.Find("ATM");
 
-        /*foreach (Item item in FindObjectsOfType<Item>())
-        {
-            market1.GetComponent<MarketInventory>().AddItem(item.GetComponent<Item>());
-        }*/
-
         UIManager.instance.InitializeGameGUI();
     }
 

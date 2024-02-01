@@ -21,6 +21,6 @@ public class Bank : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        _amount = 1000.0f;
+        _amount = 3000.0f;
     }
 }
