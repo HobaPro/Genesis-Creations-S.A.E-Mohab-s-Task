@@ -2195,7 +2195,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 625036566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28cd785b26bc86145a5230e8b6059b8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 5cbab0976635ff941b4eae32d5b57218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _content: {fileID: 597923499}
@@ -2394,7 +2394,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 656839630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9fa8f98b5f1ef543bc28c87130a6112, type: 3}
+  m_Script: {fileID: 11500000, guid: a21f4cf096542524c9d9eb9cad5f5674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _content: {fileID: 831502750}
@@ -2840,7 +2840,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 738864454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9fa8f98b5f1ef543bc28c87130a6112, type: 3}
+  m_Script: {fileID: 11500000, guid: a21f4cf096542524c9d9eb9cad5f5674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _content: {fileID: 459297949}
@@ -5006,7 +5006,7 @@ GameObject:
   - component: {fileID: 1632948032}
   - component: {fileID: 1632948031}
   - component: {fileID: 1632948030}
-  - component: {fileID: 1632948029}
+  - component: {fileID: 1632948033}
   m_Layer: 5
   m_Name: Market Inventory
   m_TagString: Untagged
@@ -5036,20 +5036,6 @@ RectTransform:
   m_AnchoredPosition: {x: -723, y: -17.5}
   m_SizeDelta: {x: 482, y: 340}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1632948029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1632948027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28cd785b26bc86145a5230e8b6059b8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _content: {fileID: 202628694}
-  _itemPrefab: {fileID: 2086088604661153515, guid: 44516a50e2e0e06418c9345cdb5ce597, type: 3}
 --- !u!114 &1632948030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5118,6 +5104,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1632948027}
   m_CullTransparentMesh: 1
+--- !u!114 &1632948033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632948027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbab0976635ff941b4eae32d5b57218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _content: {fileID: 202628694}
+  _itemPrefab: {fileID: 2086088604661153515, guid: 44516a50e2e0e06418c9345cdb5ce597, type: 3}
 --- !u!1 &1770243449
 GameObject:
   m_ObjectHideFlags: 0

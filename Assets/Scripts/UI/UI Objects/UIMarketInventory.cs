@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MarketInventoryWindow : MonoBehaviour
+public class UIMarketInventory : MonoBehaviour
 {
     [SerializeField] private Transform _content;
 
@@ -34,7 +34,7 @@ public class MarketInventoryWindow : MonoBehaviour
 
         foreach (Item item in GameManager.instance.ActiveMarket.GetComponent<Inventory>().inventory)
         {
-            MarketInventoryItemUI itemUI = Instantiate(_itemPrefab, _content).GetComponent<MarketInventoryItemUI>();
+            UIMarketInventoryItem itemUI = Instantiate(_itemPrefab, _content).GetComponent<UIMarketInventoryItem>();
 
             itemUI.ItemId = item.id;
             itemUI.SetItemName(item.Name);

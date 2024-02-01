@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerInventoryItemUI : MonoBehaviour
+public class UIMarketInventoryItem : MonoBehaviour
 {
-    public int ItemId {  get; set; }
+    public int ItemId { get; set; }
 
     [SerializeField] private Text _itemNameTxt;
     [SerializeField] private Text _itemPriceTxt;
 
-    [SerializeField] private Button _sellBtn;
+    [SerializeField] private Button _buyBtn;
     // Start is called before the first frame update
     void Start()
     {
-        _sellBtn.onClick.AddListener(SellItem);
+        _buyBtn.onClick.AddListener(BuyItem);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void SetItemName(string itemName)
@@ -33,8 +33,8 @@ public class PlayerInventoryItemUI : MonoBehaviour
         _itemPriceTxt.text = $"{itemPrice}$";
     }
 
-    public void SellItem()
+    public void BuyItem()
     {
-        GameManager.instance.ActiveMarket.SellItem(ItemId);
+        GameManager.instance.ActiveMarket.BuyItem(ItemId);
     }
 }
